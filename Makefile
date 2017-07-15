@@ -17,6 +17,8 @@ clean:
 	@echo "Manually remove all except .git instead:"
 	@echo "  rm -r _build/html/!(.|..|.git)"
 	@echo "  rm -r _build/doctrees/"
+	@echo "or remove .buildinfo"
+	@echo "  rm -r _build/html/.buildinfo"
 
 .PHONY: help Makefile
 
