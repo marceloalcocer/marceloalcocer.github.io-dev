@@ -13,7 +13,10 @@ help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 clean:
-	@echo "Do NOT make clean!"
+	@echo "Do NOT make clean! It removes the .git directory!"
+	@echo "Manually remove all except .git instead:"
+	@echo "  rm -r _build/html/!(.|..|.git)"
+	@echo "  rm -r _build/doctrees/"
 
 .PHONY: help Makefile
 

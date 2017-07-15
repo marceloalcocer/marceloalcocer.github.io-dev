@@ -2,8 +2,8 @@ marceloalcocer.github.io
 ==============================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
    :hidden:
 
    notes
-
+   ultrajs
