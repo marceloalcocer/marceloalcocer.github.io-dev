@@ -1,0 +1,143 @@
+/*** General ***/
+body{
+	font-family: Muli, sans-serif;
+	font-size: 0.8em;
+}
+a{
+	text-decoration: none;
+}
+a:hover{
+	color: inherit;
+	border-bottom: 1px solid #DDD;
+}
+pre, tt, code {
+	font-family: monospace;
+	font-size: inherit;
+}
+dt{
+	font-weight: bold;
+}
+blockquote{
+	margin-left: 2em;
+	padding-left: 1em;
+	font-style: italic;
+	border-left: 1px solid #555;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+	font-family: inherit;
+	color: #666;
+}
+
+/*** Sphinx Specific ***/
+
+/* Body */
+div.body{
+	color: #333;
+}
+div.body > .section{
+	text-align: justify;
+}
+div.body .section{
+	padding-left: 15px;
+}
+div.body h1,
+div.body h2,
+div.body h3,
+div.body h4,
+div.body h5,
+div.body h6{
+	font-family: inherit;
+	font-weight: bold;
+	margin-bottom: 0.6em;
+	margin-top: 1.5em;
+	border-bottom: 1px solid #DDD;
+	color: #666;
+}
+div.body h1{
+	color: #666;
+	/*font-variant: small-caps;*/
+	border-bottom: 1px solid #DDD;
+	text-align: center;
+        font-size: 3em;
+	/*text-transform: uppercase;*/
+	/*letter-spacing: 0.25em;*/
+}
+div.body h2{
+	font-size: 1.8em;
+}
+div.body h3{
+	font-size: 1.4em;
+}
+div.body h4{
+	font-size: 1.2em;
+}
+div.body h5{
+	font-size: 1em;
+}
+
+/* References */
+a.reference{
+	border: inherit;
+	font-size: inherit;
+}
+a:hover{
+	color: inherit;
+}
+a.footnote-reference{
+	border: inherit;
+	font-size: 0.8em;
+	vertical-align: super;
+}
+
+/* Footnotes */
+table.footnote{
+	border: inherit;
+	background: inherit;
+	font-size: 0.8em;
+}
+table.footnote .reference{
+	font-size: 1em;
+}
+
+/* Footer */
+div.footer{
+	font-size: 0.8em;
+}
+
+/* Sidebar */
+div.sphinxsidebar{
+	font-family: inherit;
+	font-size: inherit;
+}
+div.sphinxsidebar a{
+	border: inherit;
+}
+div.sphinxsidebar h2,
+div.sphinxsidebar h3,
+div.sphinxsidebar h4,
+div.sphinxsidebar h5,
+div.sphinxsidebar h6{
+	font-family: inherit;
+	font-weight: bold;
+	margin-bottom: 0.6em;
+	margin-top: 1.2em;
+	border-bottom: 1px solid #DDD;
+	color: #AAA;
+}
+h1.logo{
+	font-style: italic;
+	font-size: 1.4em;
+}
+h1.logo > a{
+	color: #AAA;
+}
+
+/* Caption */
+p.caption{
+	font-family: inherit;
+}
