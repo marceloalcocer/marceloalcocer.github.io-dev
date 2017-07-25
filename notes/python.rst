@@ -2,6 +2,41 @@
 Python
 =========
 
+NumPy
+=======
+
+Subclassing ndarray
+---------------------------
+
+Often desirable to subclass ndarray for numeric-based classes. Doing this correctly is slightly more complicated than regular subclassing as ndarray instances can be created in three different ways [#]_:
+
+#. Explicit constructor call: ``MySubclass(params)``
+#. View casting: ``np.array([1,2,3]).view(MySubclass)``
+#. Templating: ``MySubclass([1,2,3])[1:]``
+
+Each builds instances with slightly different calls to ``__new__``, ``__init__`` and ``__array_finalize__``. Briefly:
+
+* All methods call subclass's ``__new__`` method where must have superclass ``np.ndarray.__new__`` call
+* This triggers call to subclass's ``__array_finalize__`` method 
+* Arguments to ``__array_finalize__`` are different for each creation route and can be used for identification
+
+In almost every case, will want to follow template given in documentation [#]_.
+
+.. [#] https://docs.scipy.org/doc/numpy-1.12.0/user/basics.subclassing.html
+.. [#] https://docs.scipy.org/doc/numpy-1.12.0/user/basics.subclassing.html#slightly-more-realistic-example-attribute-added-to-existing-array
+
+
+Pickling ndarray subclasses
+-------------------------------
+
+When unpickling class instance, pickle protocol does not call ``__init__`` but rather creates uninitialized instance and then populated attributes from ``__dict__`` [#]_. As such, complex creation procedure required for ndarray subclasses fails to store additional class attributes.
+
+Solution is to override ndarray ``__reduce__`` and ``__setstate__`` methods to explicitly store and retrieve (respectively) the added attributes [#]_. N.b. Use ``__reduce__`` rather than ``__getstate__`` as is what is used by ndarray.
+
+.. [#] https://docs.python.org/3.4/library/pickle.html?highlight=pickle#pickling-class-instances
+.. [#] https://stackoverflow.com/questions/26598109/preserve-custom-attributes-when-pickling-subclass-of-numpy-array
+
+
 Subclassing builtin types
 ===========================
 
