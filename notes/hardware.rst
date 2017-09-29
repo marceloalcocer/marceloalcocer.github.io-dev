@@ -2,6 +2,47 @@
 Hardware Issues
 ================
 
+Drivers
+========
+
+Concept
+--------
+
+Hardware drivers are just kernel modules — C code conforming to kernel module API [#]_. Most driver modules subsequently interact with HW via firmware code provided by manufacturer.
+
+.. [#] http://www.tldp.org/LDP/lkmpg/2.6/html/
+
+Building and installing
+--------------------------
+
+Modules typically built using kernel makefile (``/lib/modules/${uname-r}/build``). Resulting kernel object binaries copied to kernel modules directory (e.g. ``/lib/modules/$(uname-r)/kernel/driver``). Any firmware is copied to kernel firmware directory (``/lib/firmware/``).
+
+Modules dependencies are computed and module is placed into module dependency tree (``lib/modules/$(uname-r)/modules.dep``, loading order for new kernel boot) using ``depmod``.
+
+Finally, modules dynamically can inserted/removed into/from currently running kernel using ``modprobe``.
+
+DMKS
+-----
+
+DKMS is framework which automates module build/installation procedure. This avoids user having to recompile modules manually every time the kernel updates.
+
+Instead of building and inserting modules manually, install (copy) just firmware and give DKMS source code for module. It will then handle compilation, installation and insertion.
+
+Secure Boot
+=============
+
+Secure Boot is a chain of trust which starts at firmware [#]_; firmware certificate authority validates bootloader which validates kernel, which validates kernel modules, etc.
+
+In Ubuntu:
+
+#. Ubuntu primary bootloader (``shim``) is signed with MS key, and so is validated by firmware CA.
+#. ``shim`` has Canonical key which validates GRUB secondary bootloader
+#. GRUB validates kernel
+#. Kernel validates kernel modules
+
+.. [#] https://wiki.ubuntu.com/SecurityTeam/SecureBoot
+
+
 Reverting to Nouveau Graphics Driver
 ======================================
 
@@ -63,11 +104,11 @@ Latter is lower level — Gnome runs on X11. Probably no need to go so low, so w
 .. [#] https://debian-administration.org/article/50/Running_applications_automatically_when_X_starts
 
 
-Mediatek MT7630e Wireless Card Drivers
-=========================================
+Mediatek MT7630e Wireless Card
+===============================
 
-Card and Driver
-------------------
+Model
+-------
 
 Wireless card::
 
@@ -93,23 +134,20 @@ Wireless card::
 	   ...
 
 
+Ubuntu 14.04
+----------------
+
 With 14.04 and kernel from summer 2014, card not working with default Ubuntu drivers. Had to build and install drivers myself [#]_. Source still present in ``/usr/src/rt2x00-3.13``, and kernel module added in ``/etc/modules``. 
 
-With 16.04 and 4.4.0-34 kernel, wireless card not working with default Ubuntu drivers. Had to build and install drivers myself [#]_. Source still present in ``/usr/local/src/MT7360E-2.0.4``.
+< 3.13.0-92
+.............
 
-Secure Boot
------------
+Worked fine.
 
-Secure Boot is a chain of trust which starts at firmware [#]_; firmware certificate authority validates bootloader which validates kernel, which validates kernel modules, etc.
+>= 3.13.0-92
+.............
 
-In Ubuntu:
-
-#. Ubuntu primary bootloader (``shim``) is signed with MS key, and so is validated by firmware CA.
-#. ``shim`` has Canonical key which validates GRUB secondary bootloader
-#. GRUB validates kernel
-#. Kernel validates kernel modules
-
-Previously, had not needed to disable Secure Boot as whole chain worked. After kernel upgrade (>= 3.13.0-92-generic), wireless drivers no longer being used. Probably because using kernel built with kernel module signing enforced? This would result in a problem as own kernel module build cannot be signed with the Canonical key [#]_ and so fails validation in Secure Boot chain
+After kernel upgrade (>= 3.13.0-92-generic), wireless drivers no longer being used. Probably because using kernel built with kernel module signing enforced? This would result in a problem as own kernel module build cannot be signed with the Canonical key [#]_ and so fails validation in Secure Boot chain
 
 Indeed see that were always failing validation:: 
 
@@ -123,9 +161,6 @@ Indeed see that were always failing validation::
 Previously, failure does not seem to have been a problem, however new kernel probably requires success? Interestingly, do not see any log entries after kernel update. Probably modules not being loaded at all.
 
 Verified that Secure Boot enabled in UEFI settings (shift-restart from Windows as primary bootloader).
-
-Solution - 14.04
----------------------
 
 Should be able to generate key, sign own modules and add to MOK [#]_.
 
@@ -150,12 +185,24 @@ Whilst checking module location, saw that kernel already provides rt2x-like driv
 
 In the end, had to disable kernel module validation. Poor solution.
 
-Solution - 16.04
----------------------
+.. [#] https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1220146/comments/125
+.. [#] http://askubuntu.com/questions/755238/why-disabling-secure-boot-is-enforced-policy-when-installing-3rd-party-modules
+.. [#] http://askubuntu.com/questions/760671/could-not-load-vboxdrv-after-upgrade-to-ubuntu-16-04-and-i-want-to-keep-secur
+
+
+
+Ubuntu 16.04
+----------------
+
+With 16.04 and 4.4.0-34 kernel, wireless card still not working with default Ubuntu drivers. Had to build and install drivers myself [#]_. Source still present in ``/usr/local/src/MT7360E-2.0.4``.
+
+
+4.4
+.......
 
 As before, tried signing the module to allow secure booting. As originally generated key still enrolled in MOK (``mokutil -l``), tries signing with this first.
 
-With new driver from neurobin, can install kernel module with DKMS or manually — advantage of DKMS approach is that do not need to rebuild for every kernel update, however manual building seems to give more control of installation process (look at makefile).
+With new driver from neurobin, can install kernel module with DKMS or manually — advantage of DKMS approach is that do not need to rebuild for every kernel update, however manual building gives more control of installation process and allows us to sign module.
 
 Build module::
 
@@ -179,9 +226,28 @@ Reboot and working first time now ;-)
 
 Will have to repeat at each kernel upgrade however. **Don't uninstall module yet! Boot into previous kernel version first to decrypt** ``MOK.priv`` .
 
-.. [#] https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1220146/comments/125
-.. [#] http://github.com/neurobin/MT7630E
-.. [#] https://wiki.ubuntu.com/SecurityTeam/SecureBoot
-.. [#] http://askubuntu.com/questions/755238/why-disabling-secure-boot-is-enforced-policy-when-installing-3rd-party-modules
-.. [#] http://askubuntu.com/questions/760671/could-not-load-vboxdrv-after-upgrade-to-ubuntu-16-04-and-i-want-to-keep-secur
 
+
+4.10.0-30
+..............
+
+Noticing that module is tainting the kernel despite being signed::
+
+	>> dmesg | grep mt7630e
+	[   18.407252] mt7630e: loading out-of-tree module taints kernel.
+	[   18.407331] mt7630e: module verification failed: signature and/or required key missing - tainting kernel
+
+Everything seems to be working though. Is kernel module signing not enforced for 4.10?
+
+
+4.10.0-30
+...........
+
+Now module installation failing — seems to hang on ``depmod`` just after build completion.
+
+Tested build + manual insertion using ``test`` script — all working. Implies that module works fine and problem is indeed related to ``depmod`` only.
+
+Interestingly, installation with DKMS does not hang on ``depmod``. Given that do not need to sign, can use this as a workaround for the time being.
+
+
+.. [#] http://github.com/neurobin/MT7630E
