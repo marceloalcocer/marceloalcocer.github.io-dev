@@ -21,7 +21,7 @@ Modules dependencies are computed and module is placed into module dependency tr
 
 Finally, modules dynamically can inserted/removed into/from currently running kernel using ``modprobe``.
 
-DMKS
+DKMS
 -----
 
 DKMS is framework which automates module build/installation procedure. This avoids user having to recompile modules manually every time the kernel updates.
@@ -197,7 +197,7 @@ Ubuntu 16.04
 With 16.04 and 4.4.0-34 kernel, wireless card still not working with default Ubuntu drivers. Had to build and install drivers myself [#]_. Source still present in ``/usr/local/src/MT7360E-2.0.4``.
 
 
-4.4
+4.4.0
 .......
 
 As before, tried signing the module to allow secure booting. As originally generated key still enrolled in MOK (``mokutil -l``), tries signing with this first.
@@ -228,7 +228,7 @@ Will have to repeat at each kernel upgrade however. **Don't uninstall module yet
 
 
 
-4.10.0-30
+4.10.0
 ..............
 
 Noticing that module is tainting the kernel despite being signed::
