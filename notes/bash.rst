@@ -2,6 +2,25 @@
 Misc Terminal Commands
 ============================
 
+PDF Manipulation with pdfjam
+=============================
+
+Joining::
+
+	pdfunit <FILE1> <FILE2> ... <OUTFILE>
+
+or more fully and flexibly::
+
+	pdfjam file1.pdf '-' file2.pdf '1,2' file3.pdf '2-' --outfile output.pdf
+
+Splitting::
+
+	pdfjam <INFILE> '1,2' --outfile first_two_pages.pdf
+	pdfjam <INFILE> '3-' --outfile third_onwards.pdf
+
+Insertion — split followed by join
+
+
 Tabs Per Line
 ==============
 
