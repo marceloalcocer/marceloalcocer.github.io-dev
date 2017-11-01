@@ -249,5 +249,10 @@ Tested build + manual insertion using ``test`` script — all working. Implies t
 
 Interestingly, installation with DKMS does not hang on ``depmod``. Given that do not need to sign, can use this as a workaround for the time being.
 
+DKMS for some reason not building or installing module on kernel upgrades — must do this manually::
+
+	sudo dkms build mt7630e/2.1.0
+	sudo dkms install mt7630e/2.1.0
+
 
 .. [#] http://github.com/neurobin/MT7630E
