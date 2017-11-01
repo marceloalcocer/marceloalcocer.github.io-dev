@@ -2,6 +2,15 @@
 Misc Terminal Commands
 ============================
 
+Multiple background commands
+===============================
+
+[#]_::
+
+	cmd1 & cmd2 &
+
+.. [#] https://stackoverflow.com/questions/14612371/how-do-i-run-multiple-background-commands-in-bash-in-a-single-line
+
 PDF Manipulation with pdfjam
 =============================
 
