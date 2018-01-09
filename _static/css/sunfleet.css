@@ -1,0 +1,11 @@
+/*** Controls ***/
+#controls fieldset{
+	display: inline-block;
+	font-weight: bold;
+	border: none;
+	margin-bottom: 1em;
+}
+#controls legend{
+	width: 100%;
+	border-bottom: solid 1px #DDD;
+}

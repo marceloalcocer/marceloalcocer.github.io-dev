@@ -124,6 +124,7 @@ html_domain_indices = True
 html_use_index = True
 html_split_index = True
 html_show_sourcelink = False
+html_experimental_html5_writer = True
 
 
 # -- Options for HTMLHelp output ------------------------------------------
