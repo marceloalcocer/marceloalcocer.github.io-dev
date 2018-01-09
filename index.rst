@@ -6,5 +6,5 @@ marceloalcocer.github.io
    :hidden:
 
    notes
-   ultrajs
+   ultrajs <ultrajs>
    Sunfleet <sunfleet>
