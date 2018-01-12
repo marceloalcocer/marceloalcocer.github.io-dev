@@ -1,4 +1,17 @@
-Latex package management on Ubuntu
+LaTeX
+#########
+
+LaTex word count
+=================
+
+From DVI render [#]_::
+
+	dvips -o - <DVI_FILE> | ps2ascii | wc -w
+
+.. [#] https://www.maths.ox.ac.uk/members/it/faqs/latex/word-count
+
+
+LaTex package management on Ubuntu
 ====================================
 
 Different latex distributions handle LaTex packages differently. The texlive distribution has a package manager (``tlmgr``) to keep packages up to date with those hosted on CTAN. 
