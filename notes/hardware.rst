@@ -2,6 +2,16 @@
 Hardware Issues
 ================
 
+Authentication for Samba print server
+========================================
+
+Having problems getting Ubuntu to authenticate with sambsa print server — authenticates successfully during setup if credentials input manually, fails otherwise.
+
+Turns out to be a Active Directory domain issue. Easily solved by prefixing username with ``/`` rather than usual ``DOMAIN\USERNAME`` [#]_
+
+.. [#] https://askubuntu.com/a/154081/326761
+
+
 Drivers
 ========
 
