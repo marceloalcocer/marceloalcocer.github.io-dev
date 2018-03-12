@@ -1,6 +1,15 @@
 Git Cheatsheet
 ================
 
+Discard unstaged changes
+---------------------------
+
+[#]_::
+
+	git checkout -- .
+
+.. [#] https://stackoverflow.com/questions/52704/how-do-i-discard-unstaged-changes-in-git#answer-52713
+
 Committing
 ------------
 
