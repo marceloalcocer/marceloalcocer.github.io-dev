@@ -12,7 +12,7 @@ Version of VS code available from the `MS website <https://code.visualstudio.com
 * Extension marketplace support
 * Crash reporting
 
-N.b. Whilst Code is distributed under an MIT license, the VS Code is distributed under a MS license. As such, currently the only way to obtain a version under an open source license is build from source.
+N.b. Whilst Code is distributed under an MIT license, the VS Code is distributed under a MS license. As such, currently the only way to obtain a version under an open source license is to build from source.
 
 .. [#] https://github.com/Microsoft/vscode/issues/60#issuecomment-161792005
 .. [#] https://github.com/Microsoft/vscode/pull/28736/files
@@ -38,13 +38,18 @@ Build process
 
 Following `build instructions <https://github.com/Microsoft/vscode/wiki/How-to-Contribute#build-and-run-from-source>`_.
 
-Install all build prerequisites.
+Obtained all build prerequisites;
 
-Obtain source::
+:Node: v8.11.1
+:NPM: v5.8.0
+:Yarn: v1.6.0
+:Python: 2.7.12
+
+Obtained source::
 
 	git clone https://github.com/Microsoft/vscode.git
 
-Obtain all node dependencies::
+Obtained all node dependencies::
 
 	cd vscode
 	yarn
