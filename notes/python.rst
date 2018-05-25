@@ -2,6 +2,48 @@
 Python
 =========
 
+pip
+====
+
+``pip`` is Python package manager used for installing packages from Python Package Index (PyPI) [#]_. Typically bootstrap ``pip`` by installing it from external sources (e.g. Debian package using ``apt``), and from then it can update itself.
+
+Python packages are installed by running their ``setup.py`` scripts. As such, very dangerous to call ``pip`` with superuser privileges — pulls code from PyPI (or elsewhere) and executes as superuser [#]_! Should instead install as user using ``pip install --user`` [#]_.
+
+On Debian based distributions, Python packages are by default installed to 3 different locations (approx) [#]_:
+
+1. ``/usr/lib/python3/dist-packages``: Global site-packages installed by Debian package manager. Typically required by the distribution
+2. ``/usr/local/lib/python3.5/dist-packages``: Global site-packages installed by ``sudo pip install``. Typically installed (incorrectly) by user
+3. ``~/.local/lib/python3.5/site-packages``: User site-packages installed by ``pip install --user``. Typically installed by user.
+
+To see locations of installed packages::
+
+	pip list -vvv
+
+Interestingly, ``installer`` column does not always show ``pip`` even if the package was installed with ``pip``. Instead best to identify installation method by path.
+
+To move packages erroneously installed global packages to user packages::
+
+	#!/bin/bash
+	for x in $( pip3 list -vvv | grep "/usr/local/lib/*" | grep -o "^\w*" ); do
+		pip show ${x}
+		sudo pip uninstall ${x}
+		pip install --user ${x}
+		pip show ${x}
+		pip list -vvv | grep "/usr/local/lib/*"
+	done
+
+N.b. ``pip uninstall`` will ask for confirmation before uninstalling.
+
+Whilst installing, pip automatically checks dependencies using both global and user packages. As such, moving a depending/dependent package from global to user should not break the dependency, and so the packages may be moved in any order. Should still check though::
+
+	pip check
+
+.. [#] https://en.wikipedia.org/wiki/Pip_(package_manager)
+.. [#] https://askubuntu.com/questions/802544/is-sudo-pip-install-still-a-broken-practice
+.. [#] Should be default pip behaviour on Ubuntu
+.. [#] https://stackoverflow.com/questions/9387928/whats-the-difference-between-dist-packages-and-site-packages
+
+
 NumPy
 =======
 
