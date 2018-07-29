@@ -112,3 +112,35 @@ The extensions marketplace is an MS service and thus is not enabled by default i
 
 .. [#] https://stackoverflow.com/questions/37143536/no-extensions-found-when-running-visual-studio-code-from-source
 
+
+Updating
+=========
+
+To update, just need to checkout release version of source and follow build instructions.
+
+An example update script::
+	
+	#!/bin/bash
+	#
+	# Description
+	# ===========
+	#
+	# Upgrade VS Code (from source) to given release
+	#
+	# Usage
+	# ======
+	#
+	# vscode_upgrade <RELEASE>
+	#
+	# RELEASE must be a valid tag in the git repository
+	#
+	#
+	
+	git fetch
+	git checkout $1
+	yarn
+	yarn run gulp vscode-linux-x64
+	sed -i "$ d"
+	echo -e '\t"extensionsGallery": {\n\t\t"serviceUrl": "https://marketplace.visualstudio.com/_apis/public/gallery",\n\t\t"cacheUrl": "https://vscode.blob.core.windows.net/gallery/index",\n\t\t"itemUrl": "https://marketplace.visualstudio.com/items"\n\t}\n}' >> resources/app/product.json
+
+All preferences and settings are stored in ``~/.vscode-oss`` and ``~/.config/Code - OSS``, and so are not overwritten.
