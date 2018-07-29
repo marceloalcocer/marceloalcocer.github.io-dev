@@ -264,5 +264,16 @@ DKMS for some reason not building or installing module on kernel upgrades — mu
 	sudo dkms build mt7630e/2.1.0
 	sudo dkms install mt7630e/2.1.0
 
+4.15.0-29
+...........
+
+Up until now, previous DKMS-based install to circumvent ``depmod`` bug had been working fine. Module could not be signed, but did not seem to be strictly enforced by kernel.
+
+As of 4.15.0-29, noticed that DKMS shows ``mt7630e`` module as being installed, but it is not loaded (nothing in ``kern.log`` or ``lsmod`` output).
+
+Uninstalling from DKMS and trying manual install however seems to once again work — ``depmod`` doesn't hang. Final ``modprobe`` call to load module does however fail due to kernel signing, so must sign and reload as before.
+
+N.b. Calling module uninstall script removes firmware binaries from ``/lib/firmware``. These are **not** re-copied by DKMS-based module installation (e.g. for 4.13 kernel), and so the card will not work and a missing firmware message will be logged in ``kern.log``. Manually copying the firmware files resolves the issue.
+
 
 .. [#] http://github.com/neurobin/MT7630E
