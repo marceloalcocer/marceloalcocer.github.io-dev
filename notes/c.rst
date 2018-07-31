@@ -37,9 +37,13 @@ Link object files into shared library with ``-shared`` option::
 
 	g++ -shared file1.o -o libfile1.so
 
-Once the library has been built, the OS must be told where to find it at runtime. This may not be the same place as at link-time — often is desirable to move/copy library to centralised location (e.g. ``/usr/local/lib``) after build. Simply copying library to ``/usr/local/lib`` after building may not be enough however as some OSes (e.g. Ubuntu) cache dynamic libraries [#]_. On Ubuntu, can update library cache by calling ``ldconfig``, or explicitly add new library path by exporting ``LD_LIBRARY_PATH`` environment variable.
+Once the library has been built, the OS must be told where to find it at runtime — this may not be the same place as at link-time. Exact link-/run-time serach rules can vary across Linux distributions, but generally can be set temporarily by setting ``LD_LIBRARY_PATH`` environment variable, or permanently by copying to a default location (e.g. ``/usr/local/lib``) [#]_.
+
+
+N.b. Simply copying library to e.g. ``/usr/local/lib`` after building may not be enough however as some distributions (e.g. Ubuntu) cache dynamic libraries, which therefore must be updated by calling ``ldconfig`` [#]_.
 
 .. [#] http://www.adp-gmbh.ch/cpp/gcc/create_lib.html
 .. [#] https://stackoverflow.com/questions/31541451/create-shared-library-from-cpp-files-and-static-library-with-g
 .. [#] https://stackoverflow.com/questions/5311515/gcc-fpic-option
+.. [#] https://unix.stackexchange.com/questions/22926/where-do-executables-look-for-shared-objects-at-runtime
 .. [#] https://stackoverflow.com/questions/8039562/cannot-open-shared-object-file
