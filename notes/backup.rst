@@ -99,3 +99,32 @@ On Gnome desktop, uses ``pinentry`` program for interactive password entry. As s
 
 .. [#] https://www.gnupg.org/faq/whats-new-in-2.1.html#autostart
 
+
+Recovery
+========
+
+Create new user::
+
+	sudo adduser foobar
+
+New user can mount external filesystems. FSs take permissions however of mount point — most frequently root. As such, cannot read (copy) any files which do not match current user (e.g. cannot copy malcocer files from foobar) — must use SU preveledges.
+
+Add user to sudo group::
+
+	sudo adduser foobar sudo
+
+Now can copy backup keys::
+
+	sudo cp <BACKUP>/.gnupg/*.gpg ./gnupg
+
+Can now list keys as usual::
+
+	gpg2 --list-keys
+
+Now check restore with a single file. Again, must use sudo to access backup files if different from current user::
+
+	sudo duplicity restore --file-to-restore <FILE> file://<BACKUP><FILE> <DEST> --verbosity debug
+
+First time, will download signatures — takes a long time.
+
+Will of course be prompted for passphrase for symmetric decryption of private key in order to decrypt archive.
