@@ -1,5 +1,5 @@
-ultrajs demos
-==============
+Demonstrations of ultrajs modules
+==================================
 
 .. toctree::
    :maxdepth: 4
@@ -8,9 +8,9 @@ ultrajs demos
 
    ultrajs/*
 
-Demonstrations of ultrajs modules. See `repository <https://github.com/marceloalcocer/ultrajs>`_ for full details and source.
 
-Current module demos:
+**Current module demos**
 
 * `bandlim.js <ultrajs/bandlim.html>`_ — Compute bandwidth limited pulse duration from power spectrum
 
+See `repository <https://github.com/marceloalcocer/ultrajs>`_ for full details and source.
