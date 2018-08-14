@@ -1,4 +1,4 @@
-echo marcelo/{thought,code,hack}.rst | html
+cat marcelo/{thought,code,hack}.rst | html
 =================================================
 
 .. toctree::
