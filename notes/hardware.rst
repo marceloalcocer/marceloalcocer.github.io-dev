@@ -275,5 +275,30 @@ Uninstalling from DKMS and trying manual install however seems to once again wor
 
 N.b. Calling module uninstall script removes firmware binaries from ``/lib/firmware``. These are **not** re-copied by DKMS-based module installation (e.g. for 4.13 kernel), and so the card will not work and a missing firmware message will be logged in ``kern.log``. Manually copying the firmware files resolves the issue.
 
+Example upgrade script (assuming decrypted MOK)::
+
+	#!/bin/bash
+	MOKDIR="/home/malcocer/.mok/"
+	MOKPRIV=$MOKDIR"_MOK.priv"
+	MOKDER=$MOKDIR"MOK.der"
+	if (( $EUID != 0 )); then
+	    printf "\n-----Sorry! Run with root privilege (for example with 'sudo ./install')\n\n"
+	    exit 1
+	fi
+	echo "*** Uninstalling ***"
+	./uninstall
+	echo "*** Cleaning Up ***"
+	make clean
+	echo "*** Installing ***"
+	./install
+	echo "*** Signing ***"
+	/usr/src/linux-headers-$(uname -r)/scripts/sign-file sha256 $MOKPRIV $MOKDER $(modinfo -n mt7630e)
+	/usr/src/linux-headers-$(uname -r)/scripts/sign-file sha256 $MOKPRIV $MOKDER $(modinfo -n mt76xx)
+	echo "*** Inserting Module ***"
+	depmod
+	echo "*** Cleaning Up ***"
+	make clean
+	rm $MOKPRIV
+
 
 .. [#] http://github.com/neurobin/MT7630E
