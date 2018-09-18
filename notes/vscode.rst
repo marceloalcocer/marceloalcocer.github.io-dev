@@ -136,14 +136,24 @@ An example update script::
 	#
 	#
 	
-
+	# Fetch
 	git fetch
+
+	# Fast-forward master
 	git checkout master
-	git merge $1
+	git merge origin/master
+
+	# Checkout release tag
+	git checkout $1
+
+	# Build
 	yarn
 	yarn run gulp vscode-linux-x64
+
+	# Add marketplace
 	cd ../VSCode-linux-x64
 	sed -i "$ d" resources/app/product.json
-	echo -e '\t"extensionsGallery": {\n\t\t"serviceUrl": "https://marketplace.visualstudio.com/_apis/public/gallery",\n\t\t"cacheUrl": "https://vscode.blob.core.windows.net/gallery/index",\n\t\t"itemUrl": "https://marketplace.visualstudio.com/items"\n\t}\n}' >> resources/app/product.json
+	sed -i "$ d" resources/app/product.json
+	echo -e '\t},\n\t"extensionsGallery": {\n\t\t"serviceUrl": "https://marketplace.visualstudio.com/_apis/public/gallery",\n\t\t"cacheUrl": "https://vscode.blob.core.windows.net/gallery/index",\n\t\t"itemUrl": "https://marketplace.visualstudio.com/items"\n\t}\n}' >> resources/app/product.json
 
 All preferences and settings are stored in ``~/.vscode-oss`` and ``~/.config/Code - OSS``, and so are not overwritten.
