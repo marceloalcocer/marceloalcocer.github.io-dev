@@ -1,6 +1,6 @@
-================
-Hardware Issues
-================
+=========
+Hardware
+=========
 
 Authentication for Samba print server
 ========================================
