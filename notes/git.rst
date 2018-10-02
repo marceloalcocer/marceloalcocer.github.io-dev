@@ -1,11 +1,8 @@
 Git 
-================
-
-Cheatsheet
--------------
+====
 
 Discard unstaged changes
-.........................
+-------------------------
 
 Discard unstaged changes [#]_::
 

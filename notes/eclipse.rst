@@ -1,3 +1,4 @@
+========
 Eclipse 
 ========
 
@@ -49,7 +50,7 @@ N.b Setting the project directory as a source directory adds it to the PYTHONPAT
 
 
 Manual upgrade
----------------
+===============
 
 Cannot upgrade directly from Eclipse Mars (4.5) to Neon (4.6), instead must do manual install [#]_.
 

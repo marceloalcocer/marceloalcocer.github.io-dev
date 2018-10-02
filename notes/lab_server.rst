@@ -1,4 +1,4 @@
-Lab Server
+Lab server
 ============
 
 Basic web server for hosting lab related files.
