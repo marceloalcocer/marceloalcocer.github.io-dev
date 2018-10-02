@@ -1,4 +1,8 @@
-HTML Plotting Libraries
+=========
+Graphing
+=========
+
+HTML graphing libraries
 ===========================
 
 D3
