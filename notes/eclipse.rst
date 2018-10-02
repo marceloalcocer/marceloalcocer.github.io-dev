@@ -1,5 +1,8 @@
-Eclipse Manual Upgrade
-========================
+Eclipse 
+========
+
+Manual upgrade
+---------------
 
 Cannot upgrade directly from Eclipse Mars (4.5) to Neon (4.6), instead must do manual install [#]_.
 
