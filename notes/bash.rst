@@ -5,11 +5,29 @@ Bash
 Multiple background commands
 ===============================
 
-[#]_::
+Execute multiple commands in background [#]_::
 
 	cmd1 & cmd2 &
 
 .. [#] https://stackoverflow.com/questions/14612371/how-do-i-run-multiple-background-commands-in-bash-in-a-single-line
+
+ISO image from CD
+===================
+
+Create ISO image [#]_::
+
+	cat dev/srX > <OUTPUT>.iso
+
+.. [#] http://askubuntu.com/questions/307688/how-to-create-iso-image-from-dvd
+
+ImageMagik Thumbnailing
+==============================
+
+Create thumbnail by central cropping [#]_::
+
+	convert -define jpeg:size=200x200 <INPUT> -thumbnail 100x100^ -gravity center -extent 100x100  <OUTPUT>
+
+.. [#] http://www.imagemagick.org/Usage/thumbnails/#height
 
 PDF Manipulation with pdfjam
 =============================
