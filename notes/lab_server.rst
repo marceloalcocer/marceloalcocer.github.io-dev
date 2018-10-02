@@ -119,7 +119,7 @@ Finally, themed with boundstate theme [#]_. Just had to modify ``Repositories`` 
 Git 
 ....
 
-Initially tried to handle user authentication via FTP_ access. Could happily push using git ftp, but had no luck pulling as no git server scripts were present on server.
+Initially tried to handle user authentication via FTP access. Could happily push using git ftp, but had no luck pulling as no git server scripts were present on server.
 
 As have to install Git on server, might as well try more standard setup of Git over (smart) HTTP.
 
