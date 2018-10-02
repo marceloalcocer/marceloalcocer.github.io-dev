@@ -1,10 +1,13 @@
-Git Cheatsheet
+Git 
 ================
 
-Discard unstaged changes
----------------------------
+Cheatsheet
+-------------
 
-[#]_::
+Discard unstaged changes
+.........................
+
+Discard unstaged changes [#]_::
 
 	git checkout -- .
 
