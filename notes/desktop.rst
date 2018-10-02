@@ -27,6 +27,15 @@ Only issue now is that OpenSSH agent requests SSH password each time — not mai
 .. [#] http://stackoverflow.com/questions/25464930/how-to-remove-a-ssh-key
 
 
+Cron vs. GNOME startup
+=======================
+
+Use ``crontab`` for managing periodic jobs to run whenever system is running (even non-graphical session).
+
+Use GNOME startup to run something when a user logs in to gnome (i.e. graphical session only). This simply places a ``.desktop`` file in ``~/,config/autostart`` [#]_
+
+.. [#] http://stackoverflow.com/questions/8247706/start-script-when-gnome-starts-up
+
 Adding apps to unity dash
 ==========================
 
