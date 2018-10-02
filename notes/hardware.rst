@@ -134,6 +134,14 @@ Clear CSS cache
 
 Every time CSS cracking occurs, resulting keys are cached in ``~/.dvdcss``. May not be totally transferable though from one protected DVD to another. This causes jerky playback. Clear cache to force ``libdvdread`` to crack again.
 
+CNST printing
+==============
+
+::
+
+	lp -U Alcocer <filename>
+
+
 
 Mediatek MT7630e Wireless Card
 ===============================

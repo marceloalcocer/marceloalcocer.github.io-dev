@@ -1,6 +1,6 @@
-============================
-Misc Terminal Commands
-============================
+=====
+Bash
+=====
 
 Multiple background commands
 ===============================
@@ -91,13 +91,5 @@ Content RegExp Recursive Search
 ::
 
 	grep -Iron --include=*.txt "aRegExp" .
-
-
-CNST Print
-==========
-
-::
-
-	lp -U Alcocer <filename>
 
 
