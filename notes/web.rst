@@ -1,4 +1,8 @@
-=======================
+====
+Web
+====
+
+
 Server-Side Scripting
 =======================
 
@@ -7,28 +11,24 @@ Server-side scripting — request server to execute code in a scripting language
 As such, interface protocols developed to allow communication between server processes and scripting languages [#]_.
 
 Protocols
-===========
-
-Legacy Interfaces
-######################
-
+-----------
 
 Common Gateway Interface (CGI)
----------------------------------
+.................................
 
 Oldest interface. Supported by almost all web servers.
 
 Slow as each new request starts up separate scripting environment (e.g. python shell).
 
 FastCGI and SCGI
---------------------
+..................
 
 Upgrade to CGI.
 
 One scripting process started and kept alive in background which handles all requests.
 
 Web Server Gateway Interface (WSGI)
-########################################
+....................................
 
 Problem with all these legacy interfaces is that server-side (and web server) code must be tailored for the specific interface. As such, in order to develop server-side code which will work with all interfaces and all servers, would have to develop multiple versions of the server-side code. For example, python code for a wiki engine would need to be written so as to support CGI, FastCGI, SCGI, etc. in order to guarantee that it could be deployed on any web server.
 
@@ -44,7 +44,7 @@ WSGI Client
 	
 
 Practicalities
-===============
+----------------
 
 Cannot get WSGI working on XAMMP. Tried with ``hgweb.wsgi`` and just refuses to work. Apache does not have wsgi module and so cannot interpret ``WSGIScriptAlias`` option.
 
