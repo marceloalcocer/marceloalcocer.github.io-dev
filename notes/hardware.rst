@@ -113,6 +113,27 @@ Latter is lower level — Gnome runs on X11. Probably no need to go so low, so w
 .. [#] https://ubuntuforums.org/showthread.php?t=1474596
 .. [#] https://debian-administration.org/article/50/Running_applications_automatically_when_X_starts
 
+Encrypted DVD playback
+======================
+
+Protected DVDs must have protection cracked to allow open-source playback. This is provided by ``css`` part of ``libdvdread``. Cannot be bundled for copyright reasons though — must download using script provided [#]_::
+
+	sudo /usr/share/doc/libdvdread4/install-css.sh
+
+.. [#] https://help.ubuntu.com/community/RestrictedFormats/PlayingDVDs
+
+
+Set DVD region
+----------------
+
+VLC ignores DVD drive region when playing. For CSS though, DVD drive region must be set to something. Set using regionset tool (Europe: 2).
+
+
+Clear CSS cache
+-----------------
+
+Every time CSS cracking occurs, resulting keys are cached in ``~/.dvdcss``. May not be totally transferable though from one protected DVD to another. This causes jerky playback. Clear cache to force ``libdvdread`` to crack again.
+
 
 Mediatek MT7630e Wireless Card
 ===============================
