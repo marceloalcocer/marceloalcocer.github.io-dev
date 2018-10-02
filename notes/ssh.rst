@@ -1,5 +1,8 @@
-SSH Key Encryption
-====================
+SSH 
+=====
+
+Key Encryption
+---------------
 
 SSH uses MD5 and AES for key encryption/decryption — not very safe nowadays. Can upgrade to more recent algorithm for better protection (PKCS#8) with no compatibility issue [#]_.
 
