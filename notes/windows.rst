@@ -2,6 +2,35 @@
 Windows
 ==========
 
+Windows Subsystem for Linux
+============================
+
+Installation of WSL is only fully supported for Windows 10 builds ≥ 16215 [#]_. Such an installation allows multiple different distributions (Ubuntu, Debian, Fedora, etc).
+
+Prior to 16215, WSL considered a beta feature and only supported Ubuntu distribution as "Bash on Ubuntu on Windows" [#]_. If for whatever reason, cannot update to latest builds, can still install this.
+
+.. [#] https://docs.microsoft.com/en-us/windows/wsl/install-win10
+.. [#] https://docs.microsoft.com/en-us/windows/wsl/install-legacy
+
+X11 on WSL
+----------
+
+WSL provides only limited Linux functionality. Amongst missing features is X11 server — server used by X11 clients (viz. applications) to render graphics. As such, graphical display on WSL not directly possible.
+
+Workaround is to install X11 server (e.g. xming) on Windows and forward all X11 client requests from WSL to windows [#]_. Forward requests by setting ``DISPLAY`` environment variable in WSL to point to X11 server [#]_::
+
+	export DISPLAY=localhost:0.0
+
+This can be chained with X11 forwarding by SSH to allow rendering of remote graphics by X11 server on local Windows::
+
+	ssh -X <SSH_SERVER>
+
+In this case, only need to set local WSL ``DISPLAY`` variable. Remote variable should be left as is for SSH to listen to and forward [#]_
+
+.. [#] https://virtualizationreview.com/articles/2017/02/08/graphical-programs-on-windows-subsystem-on-linux.aspx
+.. [#] https://stackoverflow.com/questions/784404/how-can-i-specify-a-display
+.. [#] https://unix.stackexchange.com/questions/207365/x-flag-x11-forwarding-does-not-appear-to-work-in-windows#answer-209083
+
 Windows C++ development
 ========================
 
