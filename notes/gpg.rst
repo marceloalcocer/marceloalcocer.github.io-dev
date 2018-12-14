@@ -197,15 +197,15 @@ Encryption
 
 Asymmetric encryption::
 
-	$ gpg2 --encrypt <FILE> --recipient <KEY> --output <FILE>.gpg 
+	$ gpg2 --output <FILE>.gpg --recipient <KEY>  --encrypt <FILE>
 
 Asymmetric decryption::
 
-	$ gpg2 --decrypt <FILE>.gpg --output <FILE>
+	$ gpg2 --output <FILE> --decrypt <FILE>.gpg
 
 Symmetric en/decryption::
 
-	$ gpg2 --symmetric <FILE> --output <FILE>.gpg
+	$ gpg2 --output <FILE>.gpg --symmetric <FILE>
 
 Signing
 --------
@@ -216,11 +216,11 @@ Sign file only, base64 output::
 
 Sign file only, separate signature file output::
 
-	$ gpg2 --detach-sig <FILE> ---output <FILE>.sig
+	$ gpg2 --output <FILE>.sig --detach-sig <FILE>
 
 Sign file, and encrypt it::
 
-	$ gpg2 --sign <FILE> --output <FILE>.sig
+	$ gpg2 --output <FILE>.sig --sign <FILE>
 
 Verify signature only::
 
@@ -229,5 +229,5 @@ Verify signature only::
 
 Verify signature and decrypt::
 
-	$ gpg2 --decrypt <FILE>.sig --output <FILE>
+	$ gpg2 --output <FILE> --decrypt <FILE>.sig
 
