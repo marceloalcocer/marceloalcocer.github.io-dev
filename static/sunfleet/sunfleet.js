@@ -16,7 +16,7 @@ var sunfleet= {
 		// Update graph on car/time change
 		function updateGraph(changeEvent){
 			var car = document.getElementById("car").value;
-			document.getElementById("graph").src = "_static/img/sunfleet_" + car + ".png";
+			document.getElementById("graph").src = "_static/sunfleet/img/" + car + ".png";
 		}
 		document.getElementById("car").addEventListener( "change", updateGraph, false);
 
