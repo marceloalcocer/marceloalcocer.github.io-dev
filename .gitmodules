@@ -1,3 +1,6 @@
 [submodule "submodules/sphinx_rtd_theme"]
 	path = submodules/sphinx_rtd_theme
 	url = git@github.com:rtfd/sphinx_rtd_theme.git
+[submodule "submodules/ultrajs"]
+	path = submodules/ultrajs
+	url = git@github.com:marceloalcocer/ultrajs.git
