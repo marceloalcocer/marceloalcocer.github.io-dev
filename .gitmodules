@@ -4,3 +4,6 @@
 [submodule "submodules/ultrajs"]
 	path = submodules/ultrajs
 	url = git@github.com:marceloalcocer/ultrajs.git
+[submodule "submodules/marceloalcocer.github.io"]
+	path = submodules/marceloalcocer.github.io
+	url = git@github.com:marceloalcocer/marceloalcocer.github.io.git
