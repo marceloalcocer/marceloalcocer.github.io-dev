@@ -5,9 +5,29 @@ Python
 pip
 ====
 
+Installation from source
+------------------------
+
+Recommended way of installing python package from source is via pip [#]_::
+
+	pip install --user <PATH>
+
+.. [#] https://packaging.python.org/tutorials/installing-packages/
+
+
+Privileged installation
+------------------------
+
 ``pip`` is Python package manager used for installing packages from Python Package Index (PyPI) [#]_. Typically bootstrap ``pip`` by installing it from external sources (e.g. Debian package using ``apt``), and from then it can update itself.
 
 Python packages are installed by running their ``setup.py`` scripts. As such, very dangerous to call ``pip`` with superuser privileges — pulls code from PyPI (or elsewhere) and executes as superuser [#]_! Should instead install as user using ``pip install --user`` [#]_.
+
+.. [#] https://en.wikipedia.org/wiki/Pip_(package_manager)
+.. [#] https://askubuntu.com/questions/802544/is-sudo-pip-install-still-a-broken-practice
+.. [#] Should be default pip behaviour on Ubuntu
+
+Package locations
+------------------
 
 On Debian based distributions, Python packages are by default installed to 3 different locations (approx) [#]_:
 
@@ -21,7 +41,7 @@ To see locations of installed packages::
 
 Interestingly, ``installer`` column does not always show ``pip`` even if the package was installed with ``pip``. Instead best to identify installation method by path.
 
-To move packages erroneously installed global packages to user packages::
+To move packages erroneously installed as global packages to user packages::
 
 	#!/bin/bash
 	for x in $( pip3 list -vvv | grep "/usr/local/lib/*" | grep -o "^\w*" ); do
@@ -38,9 +58,6 @@ Whilst installing, pip automatically checks dependencies using both global and u
 
 	pip check
 
-.. [#] https://en.wikipedia.org/wiki/Pip_(package_manager)
-.. [#] https://askubuntu.com/questions/802544/is-sudo-pip-install-still-a-broken-practice
-.. [#] Should be default pip behaviour on Ubuntu
 .. [#] https://stackoverflow.com/questions/9387928/whats-the-difference-between-dist-packages-and-site-packages
 
 
