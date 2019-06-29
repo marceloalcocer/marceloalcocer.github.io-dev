@@ -10,3 +10,10 @@ docker swarm vs. docker-compose
 ``docker-compose`` separate program (not part of docker engine, implemented in python). Used for deploying stack (defined in ``Compose`` file format) to single machine [#]_.
 
 .. [#] https://forums.docker.com/t/when-to-use-docker-compose-and-when-to-use-docker-swarm/29107/2
+
+Docker-compose installation
+###############################
+
+Follow excellent installation instructions [#]_
+
+.. [#] https://docs.docker.com/compose/install/
