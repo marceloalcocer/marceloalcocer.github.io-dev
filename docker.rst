@@ -1,0 +1,12 @@
+#######
+Docker
+#######
+
+docker swarm vs. docker-compose
+################################
+
+``docker swarm`` part of main docker engine (implemented in Go). Used to deploy container stack (defined in ``Compose`` file format) over many nodes.
+
+``docker-compose`` separate program (not part of docker engine, implemented in python). Used for deploying stack (defined in ``Compose`` file format) to single machine [#]_.
+
+.. [#] https://forums.docker.com/t/when-to-use-docker-compose-and-when-to-use-docker-swarm/29107/2
