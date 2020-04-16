@@ -2,6 +2,47 @@
 Desktop environment
 =====================
 
+Chromium command line flags
+============================
+
+Inpsecting chromium launcher script, see that it sources user RC file::
+
+    $ cat $(which chromium-browser)
+    #!/bin/bash
+
+    # Chromium launcher
+
+    …
+
+    test -f ~/.chromium-browser.init && . ~/.chromium-browser.init↲
+
+    …
+
+It also reads envronment variable ``CHROMIUM_USER_FLAGS`` to set CLI flags::
+
+    …
+
+    # Prefer user defined CHROMIUM_USER_FLAGS (fron env) over system↲
+    # default CHROMIUM_FLAGS (from /etc/$APPNAME/default)↲
+    if test -n "$CHROMIUM_USER_FLAGS"; then↲
+    »   echo "WARNING: \$CHROMIUM_USER_FLAGS is deprecated. Instead, update CHROMIUM_FLAGS in ~/.chromium-browser.init or place configura    tion for all sers in /etc/$APPNAME/customizations/ ."↲
+    »   echo "WARNING: Ignoring system flags because \$CHROMIUM_USER_FLAGS is set."↲
+    »   echo "CHROMIUM_FLAGS=${CHROMIUM_FLAGS}"↲
+    »   echo "CHROMIUM_USER_FLAGS=${CHROMIUM_USER_FLAGS}"↲
+    »   CHROMIUM_FLAGS=${CHROMIUM_USER_FLAGS}↲
+
+    …
+
+As such, can use RC file to specify CLI flags for chromium [#]_, e.g.::
+
+    $ echo "CHROMIUM_USER_FLAGS="--enable-features=OverlayScrollbar"
+
+This can be useful for enabling experimental flags which have been hidden in ``chrome://flags`` [#]_
+
+.. [#] https://askubuntu.com/a/832595/326761
+.. [#] https://www.reddit.com/r/chrome/comments/dsss44/bring_back_overlay_scrollbars_on_chromeflags/
+
+
 Unity SSH agent
 ================
 
