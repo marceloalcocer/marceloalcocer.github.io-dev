@@ -2,6 +2,15 @@
 Desktop environment
 =====================
 
+GNOME right-click window resize
+=================================
+
+[#]_::
+
+    gsettings set org.gnome.desktop.wm.preferences resize-with-right-button true
+
+.. [#] https://unix.stackexchange.com/a/37545/336183
+
 GNOME Alt-Tab only on current workspace
 ========================================
 
