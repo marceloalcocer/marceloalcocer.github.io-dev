@@ -2,6 +2,15 @@
 Desktop environment
 =====================
 
+GNOME switch workspaces on all monitors
+==========================================
+
+[#]_::
+
+    $ gsettings set org.gnome.mutter workspaces-only-on-primary false
+
+.. [#] https://askubuntu.com/a/1076343/326761
+
 Week numbers in GNOME calendar
 ================================
 
