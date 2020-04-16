@@ -2,6 +2,15 @@
 Bash
 =====
 
+Redirect output on success
+============================
+
+[#]_::
+
+    out=$(some_command) && echo "$out" > outfile
+
+.. [#] https://stackoverflow.com/questions/31424456/how-to-redirect-output-of-a-program-only-if-it-succeeded/31424574#31424574
+
 Disable aliases
 ================
 
