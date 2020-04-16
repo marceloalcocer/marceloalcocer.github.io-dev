@@ -1,6 +1,15 @@
 SSH 
 =====
 
+Keep process alive
+---------------------
+
+Can keep process alive after closing SSH session by using nohup [#]_, e.g.::
+
+    $ nohup python3 -m http.server 8000 &
+
+.. [#] https://askubuntu.com/questions/8653/how-to-keep-processes-running-after-ending-ssh-session/222855#222855
+
 Public key location
 --------------------
 
