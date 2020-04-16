@@ -2,6 +2,18 @@
 Bash
 =====
 
+Pop argument
+=============
+
+Can use bash ``shift`` builtin to pop argument to a script, e.g. [#]_::
+
+    $ function foo() { echo $@; shift; echo $@; } 
+    $ foo 1 2 3
+    1 2 3
+    2 3
+
+.. [#] https://stackoverflow.com/questions/10569198/bash-take-the-first-command-line-argument-and-pass-the-rest
+
 Redirection
 ===========
 
