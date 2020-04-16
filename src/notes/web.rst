@@ -2,6 +2,25 @@
 Web
 ====
 
+Cross origin resource sharing
+================================
+
+HTTP response from one server results in further HTTP request to other server (e.g. via JS, HTML link tag, etc.) [#]_.  Used to be blocked, now more and more accepted [#]_.
+
+Secondary server decides what resources are accessible. Can see from ``Access-Control-Allow-Origin`` value in header HTTP response — wildcard like matching of origins allowed to request resource. Most general is ``*`` — allow any server to request this data.
+
+Easy check::
+
+     $ curl -v URL 2>&1 1>/dev/null | grep Access
+
+For more security, can also specify resource hash to ensure content has not been tampered with. Do this with ``integrity`` attribute [#]_.
+
+Returned content-type must also be considered — e.g. cannot use ``text/plain`` as CSS [#]_.
+
+.. [#] https://www.w3schools.com/tags/tag_link.asp
+.. [#] https://en.wikipedia.org/wiki/Cross-origin_resource_sharing
+.. [#] https://stackoverflow.com/questions/32039568/what-are-the-integrity-and-crossorigin-attributes
+.. [#] https://webmasters.stackexchange.com/questions/50006/chrome-refused-to-execute-this-javascript-file/50017#50017
 
 Server-Side Scripting
 =======================
