@@ -2,12 +2,22 @@
 Desktop environment
 =====================
 
+Week numbers in GNOME calendar
+================================
+
+[#]_::
+
+    $ gsettings set org.gnome.desktop.calendar show-weekdate true
+
+.. [#] https://askubuntu.com/a/962200/326761
+
+
 GNOME right-click window resize
 =================================
 
 [#]_::
 
-    gsettings set org.gnome.desktop.wm.preferences resize-with-right-button true
+    $ gsettings set org.gnome.desktop.wm.preferences resize-with-right-button true
 
 .. [#] https://unix.stackexchange.com/a/37545/336183
 
@@ -16,7 +26,7 @@ GNOME Alt-Tab only on current workspace
 
 [#]_::
 
-    gsettings set org.gnome.shell.app-switcher current-workspace-only true
+    $ gsettings set org.gnome.shell.app-switcher current-workspace-only true
 
 .. [#] gsettings set org.gnome.shell.app-switcher current-workspace-only true
 
