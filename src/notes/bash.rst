@@ -2,6 +2,15 @@
 Bash
 =====
 
+Disable aliases
+================
+
+Use backslah to disable aliases and avoid recusrsion [#]_::
+
+    alias ls='clear;\ls'
+
+.. [#] https://stackoverflow.com/a/7716048/2798933
+
 Pop argument
 =============
 
