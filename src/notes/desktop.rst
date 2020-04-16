@@ -2,6 +2,15 @@
 Desktop environment
 =====================
 
+GNOME Alt-Tab only on current workspace
+========================================
+
+[#]_::
+
+    gsettings set org.gnome.shell.app-switcher current-workspace-only true
+
+.. [#] gsettings set org.gnome.shell.app-switcher current-workspace-only true
+
 Chromium command line flags
 ============================
 
