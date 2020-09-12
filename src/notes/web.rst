@@ -2,6 +2,19 @@
 Web
 ====
 
+W3C event model
+================
+
+W3C defines standard event model to be implemented by browsers [#]_ — DOM elements can dispatch and listen for events. Interface for this is Event interface [#]_, defining e.g. ``EventhTarget.dispatchEvent()`` and ``EventTarget.addEventListener()``. Events are probably handled by separate thread for asynchronicity.
+
+Dispatched events go through 3 phases: capture, target, bubbling [#]_. Phase under which event listener function is called is determined by third argument to ``addEventListener`` and usually defaults to bubbling. N.b. Event only propagated from top of DOM heirarchy to target — sibilngs and children never see event.
+
+.. [#] https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events
+.. [#] https://developer.mozilla.org/en-US/docs/Web/API/Event
+.. [#] https://www.w3.org/TR/DOM-Level-3-Events/#event-flow
+
+
+
 Cross origin resource sharing
 ================================
 
