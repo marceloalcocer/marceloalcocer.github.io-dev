@@ -8,9 +8,7 @@ ultrajs module demos
 
    ultrajs/*
 
+* `bandlim.js <ultrajs/bandlim.html>`_
+* …
 
-**Current module demos**
-
-* `bandlim.js <ultrajs/bandlim.html>`_ — Compute bandwidth limited pulse duration from power spectrum
-
-See `repository <https://github.com/marceloalcocer/ultrajs>`_ for full details and source.
+See `ultrajs repository <https://github.com/marceloalcocer/ultrajs>`_ for full details and source.

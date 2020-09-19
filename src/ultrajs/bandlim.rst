@@ -3,6 +3,8 @@ bandlim.js demo
 
 ``bandlim.js`` is an `ultrajs <https://github.com/marceloalcocer/ultrajs>`_ module for computing bandwidth limited pulse durations from power spectra.
 
+Pure client-side JS.
+
 .. raw:: html
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js" integrity="sha256-t7CAuaRhODo/cv00lxyONppujwTFFwUWGkrhD/UB1qM=" crossorigin="anonymous"></script>
@@ -13,28 +15,7 @@ bandlim.js demo
 	<link rel="stylesheet" href="bandlim.css">
 
 	<div id="bandlim">
-
-		<h2>Bandwidth Limited Pulse Calculator</h2>
-
-		<p>
-			Computes the bandwidth limited duration of an optical pulse from its spectrum
-			<sup class="info">
-				&#x1F6C8;
-				<span class="info_text" id="info_description">
-					\begin{equation}
-						a(t) = \left | a(t) \right | e^{i \phi(t)} \xrightarrow{\mathfrak{F}}  A(\omega) = \left | A(\omega) \right | e^{i \psi(\omega)}
-					\end{equation}
-					Under bandwidth limited conditions;
-					\begin{align}
-						\psi(\omega) &= 0 \\
-						\Rightarrow a(t) &= \mathfrak{F}^{-1} \left [ \sqrt{\left | A(\omega) \right |^2} \right ]
-					\end{align}
-				</span>
-			</sup>
-		</p>
 		
-		<p>Pure client-side JavaScript</p>
-	
 		<div class="container_fwc">
 			<form id="controls">
 				<fieldset>
