@@ -2,6 +2,17 @@
 Desktop environment
 =====================
 
+GNOME keyring
+===============
+
+Gnome provides password storage service — Gnome Keyring — to desktop applications so as to reduce number of times you have to type passwords into prompt (e.g. GPG password prompt when using GPG agent) [#]_. If ``save password`` checked during password prompt, password is encrypted with current Linux user logon password, and stored locally.
+
+Chrome delegates password management and storage to local service. On Gnome desktop, this is Gnome Keyring service.
+
+Interface to Gnome Keyring is provided by Seahorse app.
+
+.. [#] https://superuser.com/questions/969484/what-is-gnome-keyring-seahorse-and-why-its-storing-my-passwords-in-plaintext
+
 GNOME switch workspaces on all monitors
 ==========================================
 

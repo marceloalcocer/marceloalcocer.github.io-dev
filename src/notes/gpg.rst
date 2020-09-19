@@ -2,6 +2,16 @@
 Cryptography
 =============
 
+GPG agent
+============
+
+Daemon automatically started by GPG to handle (amongst other things) private key decryption [#]_. Enables passphrases to be cached, allowing password-free access to private key for limited time.
+
+On Gnome desktop, uses ``pinentry`` program for interactive password entry. As such, Gnome keyring service also available to user.
+
+.. [#] https://www.gnupg.org/faq/whats-new-in-2.1.html#autostart
+
+
 Public key cryptography
 =========================
 
