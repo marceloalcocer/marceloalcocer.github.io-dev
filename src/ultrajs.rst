@@ -1,5 +1,5 @@
-Demonstrations of ultrajs modules
-==================================
+ultrajs module demos
+=====================
 
 .. toctree::
    :maxdepth: 4
