@@ -7,3 +7,9 @@
 [submodule "submodules/marceloalcocer.github.io"]
 	path = submodules/marceloalcocer.github.io
 	url = git@github.com:marceloalcocer/marceloalcocer.github.io.git
+[submodule "submodules/reveal.js"]
+	path = submodules/reveal.js
+	url = git@github.com:hakimel/reveal.js.git
+[submodule "submodules/reveal-svgfragments"]
+	path = submodules/reveal-svgfragments
+	url = git@github.com:marceloalcocer/reveal-svgfragments.git
