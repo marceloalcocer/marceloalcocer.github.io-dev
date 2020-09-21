@@ -13,11 +13,27 @@ SVGFragments demo
                 <h1>SVGFragments demo</h1>
             </section>
             <section>
-                <h3>SVG fragments with effects and ordering</h3>
+                <h3>SVG fragments</h3>
                 <object data="svgfragments/circles.svg" type="image/svg+xml">
-                    <span class="svg-fragment fade-in" data-fragment-index="2" data-selector="#circle0"></span>
-                    <span class="svg-fragment fade-up" data-fragment-index="1" data-selector="#circle1"></span>
-                    <span class="svg-fragment fade-down" data-fragment-index="3" data-selector="#circle2"></span>
+                    <span class="svg-fragment" data-selector="#circle0"></span>
+                    <span class="svg-fragment" data-selector="#circle1"></span>
+                    <span class="svg-fragment" data-selector="#circle2"></span>
+                </object>
+            </section>
+            <section>
+                <h3>SVG fragment effects</h3>
+                <object data="svgfragments/circles.svg" type="image/svg+xml">
+                    <span class="svg-fragment fade-out" data-selector="#circle0"></span>
+                    <span class="svg-fragment fade-up" data-selector="#circle1"></span>
+                    <span class="svg-fragment fade-down" data-selector="#circle2"></span>
+                </object>
+            </section>
+            <section>
+                <h3>SVG fragment ordering</h3>
+                <object data="svgfragments/circles.svg" type="image/svg+xml">
+                    <span class="svg-fragment" data-fragment-index="2" data-selector="#circle0"></span>
+                    <span class="svg-fragment" data-fragment-index="1" data-selector="#circle1"></span>
+                    <span class="svg-fragment" data-fragment-index="3" data-selector="#circle2"></span>
                 </object>
             </section>
         </div>
