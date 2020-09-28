@@ -47,7 +47,7 @@ SVGFragments demo
                 </object>
             </section>
             <section>
-                <h3>HTML and SVG fragments </h3>
+                <h3>HTML and SVG fragments</h3>
                 <ul>
                     <li class="fragment">HTML fragment 0</li>
                     <li class="fragment">HTML fragment 1</li>
@@ -56,6 +56,20 @@ SVGFragments demo
                     <span class="fragment" data-selector="#circle0"></span>
                     <span class="fragment" data-selector="#circle1"></span>
                     <span class="fragment" data-selector="#circle2"></span>
+                </object>
+            </section>
+            <section>
+                <h3>Everything!</h3>
+                <ul>
+                    <li class="fragment" data-fragment-index="1">HTML fragment 0</li>
+                    <li class="fragment" data-fragment-index="5">HTML fragment 1</li>
+                </ul>
+                <object data="svgfragments/circles.svg" type="image/svg+xml">
+                    <span class="fragment fade-in" data-fragment-index="2" data-selector="#circle0">
+                      <span class="fragment fade-out" data-fragment-index="4" data-selector="#circle0"></span>
+                    </span>
+                    <span class="fragment fade-up" data-fragment-index="0" data-selector="#circle1"></span>
+                    <span class="fragment fade-down" data-fragment-index="3" data-selector="#circle2"></span>
                 </object>
             </section>
         </div>
