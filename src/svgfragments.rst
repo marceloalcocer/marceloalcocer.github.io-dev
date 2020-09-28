@@ -15,25 +15,35 @@ SVGFragments demo
             <section>
                 <h3>SVG fragments</h3>
                 <object data="svgfragments/circles.svg" type="image/svg+xml">
-                    <span class="svg-fragment" data-selector="#circle0"></span>
-                    <span class="svg-fragment" data-selector="#circle1"></span>
-                    <span class="svg-fragment" data-selector="#circle2"></span>
+                    <span class="fragment" data-selector="#circle0"></span>
+                    <span class="fragment" data-selector="#circle1"></span>
+                    <span class="fragment" data-selector="#circle2"></span>
                 </object>
             </section>
             <section>
                 <h3>SVG fragment effects</h3>
                 <object data="svgfragments/circles.svg" type="image/svg+xml">
-                    <span class="svg-fragment fade-out" data-selector="#circle0"></span>
-                    <span class="svg-fragment fade-up" data-selector="#circle1"></span>
-                    <span class="svg-fragment fade-down" data-selector="#circle2"></span>
+                    <span class="fragment fade-out" data-selector="#circle0"></span>
+                    <span class="fragment fade-up" data-selector="#circle1"></span>
+                    <span class="fragment fade-down" data-selector="#circle2"></span>
+                </object>
+            </section>
+            <section>
+                <h3>Nested SVG fragments</h3>
+                <object data="svgfragments/circles.svg" type="image/svg+xml">
+                    <span class="fragment fade-in" data-selector="#circle0">
+                      <span class="fragment fade-out" data-selector="#circle0"></span>
+                    </span>
+                    <span class="fragment fade-up" data-selector="#circle1"></span>
+                    <span class="fragment fade-down" data-selector="#circle2"></span>
                 </object>
             </section>
             <section>
                 <h3>SVG fragment ordering</h3>
                 <object data="svgfragments/circles.svg" type="image/svg+xml">
-                    <span class="svg-fragment" data-fragment-index="2" data-selector="#circle0"></span>
-                    <span class="svg-fragment" data-fragment-index="1" data-selector="#circle1"></span>
-                    <span class="svg-fragment" data-fragment-index="3" data-selector="#circle2"></span>
+                    <span class="fragment" data-fragment-index="2" data-selector="#circle0"></span>
+                    <span class="fragment" data-fragment-index="1" data-selector="#circle1"></span>
+                    <span class="fragment" data-fragment-index="3" data-selector="#circle2"></span>
                 </object>
             </section>
         </div>
