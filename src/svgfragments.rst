@@ -46,6 +46,18 @@ SVGFragments demo
                     <span class="fragment" data-fragment-index="3" data-selector="#circle2"></span>
                 </object>
             </section>
+            <section>
+                <h3>HTML and SVG fragments </h3>
+                <ul>
+                    <li class="fragment">HTML fragment 0</li>
+                    <li class="fragment">HTML fragment 1</li>
+                </ul>
+                <object data="svgfragments/circles.svg" type="image/svg+xml">
+                    <span class="fragment" data-selector="#circle0"></span>
+                    <span class="fragment" data-selector="#circle1"></span>
+                    <span class="fragment" data-selector="#circle2"></span>
+                </object>
+            </section>
         </div>
     </div>
     <script src="svgfragments/dist/reveal.js"></script>
