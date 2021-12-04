@@ -2,6 +2,81 @@
 Python
 =========
 
+async
+=====
+
+:Concept: Relinquish *some* control of execution order to an event loop so as to enable concurrent (*not parallel*) execution (handing execution 'baton' amongst multiple blocking operations).
+
+To achieve this, define *coroutines* using ``async def`` — functions which can pause/resume execution. These are nothing magical, but rather just a formalization of some of the more advanced functionalities of generators::
+
+	╭───────>───────╮
+	│             ──┼─> yield
+	┊   generator
+	│             <─┼── send
+	╰───────<───────╯
+
+Within a coroutine, relinquish control using ``await``. The controlling event loop will then re-enter the coroutine once the awaitable is ready::
+
+	╭───────>───────╮
+	│             ──┼─> await
+	┊   coroutine                Event Loop
+	│             <─┼── result
+	╰───────<───────╯
+
+N.b. Execution order is as normal in the coroutine — ``await`` blocks *within* coroutine. Concurrency is only achieved when multiple coroutines are being handled by the event loop.
+
+Python does *not* have an in-built event loop, but rather only provides the basic tools (``async/await``) to do so. It's envisaged that multiple libraries will implement them in different ways.
+
+One such implementation bundled in the stdlib is ``asyncio`` — a library focussing on asynchronous IO. ``asyncio``'s event loop is started using ``asyncio.run()``. The argument is a coroutine which probably calls other coroutines. The called coroutines are added to and handled by the event loop. The event loop is closed once the main coroutine returns, e.g. [#]_::
+
+	import asyncio
+	import time
+
+	async def say_after(delay, what):
+		await asyncio.sleep(delay)
+		print(what)
+
+	async def main():
+		print(f"started at {time.strftime('%X')}")
+
+		await say_after(1, 'hello')
+		await say_after(2, 'world')
+
+		print(f"finished at {time.strftime('%X')}")
+
+	asyncio.run(main())
+
+N.b. As mentioned above, the ``await`` in ``main`` is blocking, so execution order within ``main`` is well defined (first ``await``, second ``await``). As such, in this example only one coroutine is being handled by the event loop at a time, and so there is no real concurrency.
+
+To achieve concurrency, must have multiple coroutines in event loop, i.e. single ``await`` on multiple coroutines. Do this in ``asyncio`` by converting coroutines into ``Task`` instances (using ``asyncio.create_task``), which do *not* block under ``await``::
+
+	import asyncio
+	import time
+
+	async def say_after(delay, what):
+		await asyncio.sleep(delay)
+		print(what)
+
+	async def main():
+		task1 = asyncio.create_task(say_after(1, 'hello'))
+		task2 = asyncio.create_task(say_after(2, 'world'))
+
+		print(f"started at {time.strftime('%X')}")
+
+		# Wait until both tasks are completed (should take
+		# around 2 seconds.)
+		await task1
+		await task2
+
+		print(f"finished at {time.strftime('%X')}")
+
+	asyncio.run(main())
+
+Can also use ``asyncio.gather`` as convenient way to convert multiple coroutines into tasks — this is probably what you'll be using most.
+
+.. [#] https://docs.python.org/3.7/library/asyncio-task.html
+
+
 pip
 ====
 
