@@ -48,7 +48,9 @@ One such implementation bundled in the stdlib is ``asyncio`` — a library focus
 
 N.b. As mentioned above, the ``await`` in ``main`` is blocking, so execution order within ``main`` is well defined (first ``await``, second ``await``). As such, in this example only one coroutine is being handled by the event loop at a time, and so there is no real concurrency.
 
-To achieve concurrency, must have multiple coroutines in event loop, i.e. single ``await`` on multiple coroutines. Do this in ``asyncio`` by converting coroutines into ``Task`` instances (using ``asyncio.create_task``), which do *not* block under ``await``::
+To achieve concurrency, must have multiple coroutines in event loop, i.e. single ``await`` on multiple coroutines. Do this in ``asyncio`` by converting coroutines into ``Task`` instances (using ``asyncio.create_task``). These will be scheduled for imminent execution in the event loop.
+
+N.b. Execution will occur soon after the ``Task`` is instantiated. ``Tasks`` are however awaitables, and so ``await`` can be used if necessary to suspend control flow until the ``Task`` has completed. This can be used for example, to ensure the ``Tasks`` stay in scope::
 
 	import asyncio
 	import time
@@ -58,21 +60,41 @@ To achieve concurrency, must have multiple coroutines in event loop, i.e. single
 		print(what)
 
 	async def main():
-		task1 = asyncio.create_task(say_after(1, 'hello'))
-		task2 = asyncio.create_task(say_after(2, 'world'))
+		task1 = asyncio.create_task(say_after(1, 'hello'))      # Will start executing imminently
+		task2 = asyncio.create_task(say_after(2, 'world'))      # Will start executing imminently
 
 		print(f"started at {time.strftime('%X')}")
 
-		# Wait until both tasks are completed (should take
-		# around 2 seconds.)
-		await task1
-		await task2
+		await task1     # Wait until task 1 is done…
+		await task2     # …and then wait until task 2 is done
 
 		print(f"finished at {time.strftime('%X')}")
 
 	asyncio.run(main())
 
-Can also use ``asyncio.gather`` as convenient way to convert multiple coroutines into tasks — this is probably what you'll be using most.
+Can also use ``asyncio.gather`` as convenient way to convert multiple coroutines into tasks — this is probably what you'll be using most::
+
+
+	import asyncio
+	import time
+
+	async def say_after(delay, what):
+		await asyncio.sleep(delay)
+		print(what)
+
+	async def main():
+
+		# Convert both coroutines into tasks, thereby scheduling 
+		# their concurrent execution.
+		#
+		# Wait until both tasks have completed before proceeding
+		#
+		await asyncio.gather(
+			say_after(1, 'hello'),
+			say_after(2, 'world')
+		)
+
+	asyncio.run(main())
 
 .. [#] https://docs.python.org/3.7/library/asyncio-task.html
 
